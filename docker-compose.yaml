@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+    prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+        ports:
+            - 9090:9090
+
+    grafana:
+        image: grafana/grafana
+        depends_on:
+            - prometheus
+        ports:
+            - 3000:3000
+
+    postgres_iam:
+        image: postgres:13-alpine
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=lab
+            - POSTGRES_PASSWORD=development
+
+    pg_exporter:
+        image: wrouesnel/postgres_exporter
+        volumes:
+            - ./exporter_queries.yaml:/etc/exporter.yaml
+        depends_on:
+            - postgres_iam
+        environment:
+            - DATA_SOURCE_NAME=postgresql://lab:development@postgres_iam:5432/postgres?sslmode=disable
+        entrypoint: /postgres_exporter
+                        --log.level debug
+                        --extend.query-path /etc/exporter.yaml
+                        --disable-settings-metrics
+
