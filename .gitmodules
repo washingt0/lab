@@ -1,3 +1,6 @@
 [submodule "iam"]
 	path = iam
 	url = https://github.com/washingt0/lab-iam
+[submodule "b3"]
+	path = b3
+	url = https://github.com/washingt0/lab-b3
