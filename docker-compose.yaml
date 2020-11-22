@@ -16,7 +16,32 @@ services:
       - 3000:3000
     networks:
       - lab_network
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+        - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=lab
+      - RABBITMQ_DEFAULT_PASS=development
+    networks:
+      - lab_network
+
+  kraken:
+    image: devopsfaith/krakend
+    ports:
+      - 5000:5000
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json
+      - ./keys:/private/lab
+    networks:
+      - lab_network
 
 networks:
   lab_network:
     name: lab_network
+
+volumes:
+  grafana-data:

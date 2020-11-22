@@ -28,4 +28,14 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - pg_exporter:9187
+    - pg_exporter_iam:9187
+
+- job_name: rabbitmq
+  honor_timestamps: true
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - rabbitmq:15692

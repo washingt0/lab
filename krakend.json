@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "extra_config": {},
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "lab",
+  "port": 5000,
+  "endpoints": [
+    {
+      "endpoint": "/iam/auth/login",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "headers_to_pass": [
+        "User-Agent",
+        "Content-Type",
+        "X-Forwarded-For"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v1/auth/login",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {},
+          "host": [
+            "http://iam:9000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}
