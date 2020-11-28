@@ -5,7 +5,7 @@
   "cache_ttl": "300s",
   "output_encoding": "json",
   "name": "lab",
-  "port": 5000,
+  "port": 443,
   "endpoints": [
     {
       "endpoint": "/iam/auth/login",
@@ -56,5 +56,9 @@
         }
       ]
     }
-  ]
+  ],
+  "tls": {
+    "public_key": "/private/lab/cert.pem",
+    "private_key": "/private/lab/key.pem"
+  }
 }
