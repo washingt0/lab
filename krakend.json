@@ -30,6 +30,31 @@
           "disable_host_sanitize": false
         }
       ]
+    },
+    {
+      "endpoint": "/iam/auth/session",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "headers_to_pass": [
+        "User-Agent",
+        "Content-Type",
+        "X-Forwarded-For",
+        "Authorization"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v1/auth/session",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://iam:9000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
     }
   ]
 }
