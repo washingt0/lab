@@ -4,3 +4,6 @@
 [submodule "b3"]
 	path = b3
 	url = https://github.com/washingt0/lab-b3
+[submodule "mobile"]
+	path = mobile
+	url = https://github.com/washingt0/lab-mobile
