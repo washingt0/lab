@@ -1,6 +1,15 @@
 {
   "version": 2,
-  "extra_config": {},
+  "extra_config": {
+    "github_com/devopsfaith/krakend-httpsecure": {
+      "allowed_hosts": [],
+      "ssl_proxy_headers": {},
+      "browser_xss_filter": true,
+      "ssl_redirect": true,
+      "frame_deny": true,
+      "custom_frame_options_value": "DENY"
+    }
+  },
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "output_encoding": "json",
@@ -11,7 +20,16 @@
       "endpoint": "/iam/auth/login",
       "method": "POST",
       "output_encoding": "no-op",
-      "extra_config": {},
+      "extra_config": {
+        "github.com/devopsfaith/krakend-httpsecure": {
+          "allowed_hosts": [],
+          "ssl_proxy_headers": {},
+          "browser_xss_filter": true,
+          "ssl_redirect": true,
+          "frame_deny": true,
+          "custom_frame_options_value": "DENY"
+        }
+      },
       "headers_to_pass": [
         "User-Agent",
         "Content-Type",
@@ -35,7 +53,26 @@
       "endpoint": "/iam/auth/session",
       "method": "GET",
       "output_encoding": "no-op",
-      "extra_config": {},
+      "extra_config": {
+        "github.com/devopsfaith/krakend-httpsecure": {
+          "allowed_hosts": [],
+          "ssl_proxy_headers": {},
+          "browser_xss_filter": true,
+          "ssl_redirect": true,
+          "frame_deny": true,
+          "custom_frame_options_value": "DENY"
+        },
+        "github.com/devopsfaith/krakend-jose/validator": {
+          "alg": "RS256",
+          "cache": true,
+          "disable_jwk_security": true,
+          "issuer": "lab/iam",
+          "jwk-url": "http://iam:9090/keys",
+          "audience": [
+            "https://lab.washingt0.me"
+          ]
+        }
+      },
       "headers_to_pass": [
         "User-Agent",
         "Content-Type",
