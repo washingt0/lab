@@ -32,7 +32,7 @@ services:
   kraken:
     image: devopsfaith/krakend
     ports:
-      - 5000:5000
+      - 443:5000
     volumes:
       - ./krakend.json:/etc/krakend/krakend.json
       - ./keys:/private/lab
